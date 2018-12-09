@@ -27,6 +27,8 @@ public class WebSocketServer {
 
 	public void run(){
 
+
+
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 
