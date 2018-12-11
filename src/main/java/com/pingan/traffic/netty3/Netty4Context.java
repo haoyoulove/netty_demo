@@ -1,11 +1,15 @@
 package com.pingan.traffic.netty3;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.pingan.traffic.protocol.Protocol;
+import com.pingan.traffic.util.ProtocolUtil;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.AttributeKey;
 
 import java.net.InetSocketAddress;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -18,8 +22,27 @@ public class Netty4Context extends GaoContext {
 
 	@Override
 	public void writeToWeb(Object msg) {
+		try {
 		TextWebSocketFrame obj = new TextWebSocketFrame(msg.toString());
 		Netty4Connetions.getInstance().getAllChannels().write(obj);
+
+//			Protocol.CcRequest request = (Protocol.CcRequest) msg;
+//			Protocol.Header header = request.getHeader();
+//			System.out.println("header->"+header);
+//
+//
+//			Protocol.Header.Builder beatHeader = Protocol.Header.newBuilder();
+//			beatHeader.setId(100);
+//
+//			Protocol.BeatResponse.Builder res = Protocol.BeatResponse.newBuilder();
+//			Protocol.BeatRequest beatRequest = Protocol.BeatRequest.parseFrom(request.getBody());
+//			res.setResMsg(beatRequest.getMsg());
+//			Protocol.CcResponse response = ProtocolUtil.buildSuccessResponse(header.toBuilder(), res.build().toByteString());
+//			Netty4Connetions.getInstance().getAllChannels().writeAndFlush(response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Netty4Context(ChannelHandlerContext ctx) {

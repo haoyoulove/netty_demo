@@ -1,6 +1,6 @@
-package com.pingan.traffic.netty3;
+package com.pingan.traffic.test;
 
-import com.pingan.traffic.test.User;
+import com.pingan.traffic.netty3.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
